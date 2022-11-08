@@ -9,18 +9,23 @@ FROM debian:bullseye
 #
 
 RUN apt  update
-RUN apt  install -y python3-pip bash-completion python3-tk
-RUN pip3 install jupyterlab ipywidgets benepar spacy nltk stanza pandas q
+RUN apt  install -y python3-pip bash-completion python3-tk wget
+RUN pip3 install torch torchvision torchaudio
+RUN pip3 install jupyterlab ipywidgets  allennlp allennlp-models spacy pandas q
+#RUN pip3 install jupyterlab ipywidgets flair   spacy nltk stanza pandas q
+#RUN pip3 install jupyterlab ipywidgets benepar spacy nltk stanza pandas q
 #RUN pip3 install spacy[transformers,lookups];
 
-RUN python3 -m spacy download    en_core_web_trf; \
-    python3 -m spacy download    en_core_web_sm ; \
-    python3 -m spacy download    en_core_web_md ; \
-    python3 -m spacy download    en_core_web_lg ;
-#   python3 -m spacy download    ja_core_news_lg ; python3 -m spacy download    ja_core_news_trf ;
+RUN python3 -m spacy download      en_core_web_sm ; python3 -m spacy download en_core_web_lg ;
+# RUN python3 -m spacy download    en_core_web_trf; \
+#     python3 -m spacy download    en_core_web_sm ; \
+#     python3 -m spacy download    en_core_web_md ; \
+#     python3 -m spacy download    en_core_web_lg ;
+#     python3 -m spacy download    ja_core_news_lg ; python3 -m spacy download    ja_core_news_trf ;
+#RUN python3 -c "import benepar; benepar.download('benepar_en3');"
 
-RUN python3 -c "import benepar; benepar.download('benepar_en3');"
-
+RUN mkdir -p /opt/models; \
+    (cd /opt/models; wget https://storage.googleapis.com/allennlp-public-models/structured-prediction-srl-bert.2020.12.15.tar.gz )
 
 ARG workdir=/work
 ARG port=8888
