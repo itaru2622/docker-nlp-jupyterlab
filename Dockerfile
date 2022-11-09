@@ -27,6 +27,10 @@ RUN python3 -m spacy download      en_core_web_sm ; python3 -m spacy download en
 RUN mkdir -p /opt/models; \
     (cd /opt/models; wget https://storage.googleapis.com/allennlp-public-models/structured-prediction-srl-bert.2020.12.15.tar.gz )
 
+# https://github.com/allenai/allennlp/blob/main/Makefile download-extra
+RUN python3 -c 'import nltk; [ nltk.download(p) for p in ("wordnet", "wordnet_ic", "sentiwordnet", "omw", "omw-1.4", "punkt") ]'
+
+
 ARG workdir=/work
 ARG port=8888
 ARG token=''
