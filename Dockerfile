@@ -25,7 +25,10 @@ RUN python3 -m spacy download      en_core_web_sm ; python3 -m spacy download en
 #RUN python3 -c "import benepar; benepar.download('benepar_en3');"
 
 RUN mkdir -p /opt/models; \
-    (cd /opt/models; wget https://storage.googleapis.com/allennlp-public-models/structured-prediction-srl-bert.2020.12.15.tar.gz )
+    (cd /opt/models; \
+        wget https://storage.googleapis.com/allennlp-public-models/structured-prediction-srl-bert.2020.12.15.tar.gz ;\
+        wget https://storage.googleapis.com/allennlp-public-models/decomposable-attention-elmo-2020.04.09.tar.gz ;\
+    )
 
 # https://github.com/allenai/allennlp/blob/main/Makefile download-extra
 RUN python3 -c 'import nltk; [ nltk.download(p) for p in ("wordnet", "wordnet_ic", "sentiwordnet", "omw", "omw-1.4", "punkt") ]'
