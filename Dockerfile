@@ -9,12 +9,15 @@ FROM debian:bullseye
 #
 
 RUN apt  update
-RUN apt  install -y python3-pip bash-completion python3-tk wget
+RUN apt  install -y python3-pip bash-completion python3-tk wget nodejs npm
 RUN pip3 install torch torchvision torchaudio
-RUN pip3 install jupyterlab ipywidgets  allennlp allennlp-models spacy pandas q
+RUN pip3 install jupyterlab ipywidgets  allennlp allennlp-models spacy pandas q plotly
 #RUN pip3 install jupyterlab ipywidgets flair   spacy nltk stanza pandas q
 #RUN pip3 install jupyterlab ipywidgets benepar spacy nltk stanza pandas q
 #RUN pip3 install spacy[transformers,lookups];
+
+# supports plotly output in jupyterlab
+RUN jupyter labextension install jupyterlab-plotly; jupyter labextension install @jupyter-widgets/jupyterlab-manager plotlywidget;
 
 RUN python3 -m spacy download      en_core_web_sm ; python3 -m spacy download en_core_web_lg ;
 # RUN python3 -m spacy download    en_core_web_trf; \
