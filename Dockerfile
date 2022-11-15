@@ -9,11 +9,9 @@ FROM debian:bullseye
 #
 
 RUN apt  update
-RUN apt  install -y python3-pip bash-completion python3-tk wget nodejs npm
+RUN apt  install -y python3-pip bash-completion wget nodejs npm
 RUN pip3 install torch torchvision torchaudio
-RUN pip3 install jupyterlab ipywidgets  allennlp allennlp-models spacy pandas q plotly
-#RUN pip3 install jupyterlab ipywidgets flair   spacy nltk stanza pandas q
-#RUN pip3 install jupyterlab ipywidgets benepar spacy nltk stanza pandas q
+RUN pip3 install jupyterlab ipywidgets jupyterlab-git     allennlp allennlp-models spacy pandas plotly q
 #RUN pip3 install spacy[transformers,lookups];
 
 # supports plotly output in jupyterlab
@@ -25,7 +23,6 @@ RUN python3 -m spacy download      en_core_web_sm ; python3 -m spacy download en
 #     python3 -m spacy download    en_core_web_md ; \
 #     python3 -m spacy download    en_core_web_lg ;
 #     python3 -m spacy download    ja_core_news_lg ; python3 -m spacy download    ja_core_news_trf ;
-#RUN python3 -c "import benepar; benepar.download('benepar_en3');"
 
 RUN mkdir -p /opt/models; \
     (cd /opt/models; \
