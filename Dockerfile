@@ -33,6 +33,10 @@ RUN mkdir -p /opt/models; \
 # https://github.com/allenai/allennlp/blob/main/Makefile download-extra
 RUN python3 -c 'import nltk; [ nltk.download(p) for p in ("wordnet", "wordnet_ic", "sentiwordnet", "omw", "omw-1.4", "punkt") ]'
 
+# for heideltime, resolving MM-DD to YYYY-MM-DD
+RUN apt install -y openjdk-11-jre ; \
+    pip3 install git+https://github.com/JMendes1995/py_heideltime.git; \
+    chmod a+rx /usr/local/lib/python3.9/dist-packages/py_heideltime/Heideltime/TreeTaggerLinux/bin/*
 
 ARG workdir=/work
 ARG port=8888
