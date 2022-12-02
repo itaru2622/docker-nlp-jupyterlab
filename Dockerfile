@@ -11,7 +11,7 @@ FROM debian:bullseye
 RUN apt  update
 RUN apt  install -y python3-pip bash-completion wget nodejs npm
 RUN pip3 install torch torchvision torchaudio
-RUN pip3 install jupyterlab ipywidgets jupyterlab-git     allennlp allennlp-models spacy pandas plotly neuralcoref q
+RUN pip3 install jupyterlab ipywidgets jupyterlab-git     neuralcoref allennlp allennlp-models spacy pandas plotly q
 #RUN pip3 install spacy[transformers,lookups];
 
 # supports plotly output in jupyterlab
