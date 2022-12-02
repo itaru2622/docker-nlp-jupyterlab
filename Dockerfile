@@ -11,7 +11,7 @@ FROM debian:bullseye
 RUN apt  update
 RUN apt  install -y python3-pip bash-completion wget nodejs npm
 RUN pip3 install torch torchvision torchaudio
-RUN pip3 install jupyterlab ipywidgets jupyterlab-git     allennlp allennlp-models spacy pandas plotly q
+RUN pip3 install jupyterlab ipywidgets jupyterlab-git     allennlp allennlp-models spacy pandas plotly neuralcoref q
 #RUN pip3 install spacy[transformers,lookups];
 
 # supports plotly output in jupyterlab
@@ -26,6 +26,7 @@ RUN python3 -m spacy download      en_core_web_sm ; python3 -m spacy download en
 
 RUN mkdir -p /opt/models; \
     (cd /opt/models; \
+        wget https://storage.googleapis.com/allennlp-public-models/openie-model.2020.03.26.tar.gz ;\
         wget https://storage.googleapis.com/allennlp-public-models/structured-prediction-srl-bert.2020.12.15.tar.gz ;\
         wget https://storage.googleapis.com/allennlp-public-models/decomposable-attention-elmo-2020.04.09.tar.gz ;\
     )
