@@ -12,6 +12,8 @@ RUN apt  update
 RUN apt  install -y python3-pip bash-completion wget nodejs npm
 RUN pip3 install torch torchvision torchaudio
 RUN pip3 install jupyterlab ipywidgets jupyterlab-git     allennlp allennlp-models spacy pandas plotly spacy-experimental q
+# spacy-experimental coreference cf. https://github.com/explosion/spacy-experimental/releases
+RUN pip3 install https://github.com/explosion/spacy-experimental/releases/download/v0.6.0/en_coreference_web_trf-3.4.0a0-py3-none-any.whl
 #RUN pip3 install spacy[transformers,lookups];
 
 # supports plotly output in jupyterlab
